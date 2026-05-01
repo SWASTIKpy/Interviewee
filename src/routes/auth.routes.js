@@ -8,14 +8,15 @@ const authRouter = express.Router()
  * @access Public
  */
 
-authRouter.post("/register", authController.registerUserController){
-    const { username, email, password } = req.body
+authRouter.post("/register", authController.registerUserController)
 
-    if (!username || !email || !password) {
-        return res.status(400).json({ message: "All fields are required" })
-    }
+/**
+ * @route POST /api/auth/login
+ * @desc Login a user with email and pass
+ * @access Public
+ */
 
-    const isUserAlreadyExists = await userModel.findOne({ $or: [{ username }, { email }] })
-}
-
+authRouter.post("/login", authController.loginUserController)
 module.exports = authRouter
+
+
